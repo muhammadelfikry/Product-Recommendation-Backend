@@ -4,7 +4,7 @@ import pandas as pd
 
 def transform(df):
     try:
-        data = df.copy()
+        data = df[["Name", "Brand", "Description", "Notes", "Image URL"]].copy()
         data = data.dropna()
 
         note_list = data["Notes"].str.split(",")
@@ -12,6 +12,9 @@ def transform(df):
         
         data["Notes"] = note_list
         data["Notes"] = data["Notes"].apply(lambda x: ", ".join(x))
+        data['Notes'] = data['Notes'].str.strip()
+        
+        data['Description'] = data['Description'].str.strip()
         
         tf = TfidfVectorizer()
         tf.fit(data["Notes"])
@@ -23,7 +26,7 @@ def transform(df):
         
         cosine_sim_df = pd.DataFrame(cosine_sim, index=data["Name"], columns=data["Name"])
 
-        return cosine_sim_df
+        return cosine_sim_df, data
     
     except Exception as e:
         print("Data transform error: " + str(e))

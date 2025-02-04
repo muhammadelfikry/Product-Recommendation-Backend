@@ -1,4 +1,4 @@
-from setup import *
+from etl.setup import *
 import sqlalchemy as sqla
 import pandas as pd
 
