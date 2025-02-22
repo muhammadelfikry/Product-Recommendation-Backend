@@ -7,12 +7,12 @@ def transform(df):
         data = df[["Name", "Brand", "Description", "Notes", "Image URL"]].copy()
         data = data.dropna()
 
-        note_list = data["Notes"].str.split(",")
+        note_list = data["Notes"].str.strip()
+        note_list = note_list.str.split(",")
         note_list = [[note for note in sublist if note.strip() != ''] for sublist in note_list]
         
         data["Notes"] = note_list
         data["Notes"] = data["Notes"].apply(lambda x: ", ".join(x))
-        data['Notes'] = data['Notes'].str.strip()
         
         data['Description'] = data['Description'].str.strip()
         
