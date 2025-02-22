@@ -7,6 +7,6 @@ PWD = os.environ["PASSWORD"]
 USER_ID = os.environ["USER_ID"]
 SERVER = os.environ["SERVER"]
 DB = os.environ["DATABASE"]
-DB_PORT = os.environ["PORT"]
+DB_PORT = os.environ["DB_PORT"]
 
 src_url = f"postgresql://{USER_ID}:{PWD}@{SERVER}:{DB_PORT}/{DB}"
