@@ -4,6 +4,7 @@ from etl.extract import extract
 from etl.transform import transform
 from etl.load import load
 import sqlalchemy as sqla
+import uvicorn
 
 app = FastAPI()
 
@@ -27,4 +28,5 @@ def get_recommendation(product_name: str):
     return recommendation
 
 if __name__=="__main__":
-    app.run(debug=True, port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
