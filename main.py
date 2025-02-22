@@ -14,6 +14,10 @@ df = extract(db=db, sql=sql)
 
 cosine_sim_df, items = transform(df)
 
+@app.get("/products")
+def get_products():
+    return items.to_dict(orient="records")
+
 @app.get("/recommendation")
 def get_recommendation(product_name: str):
     user_input = product_name
