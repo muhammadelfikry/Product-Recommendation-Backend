@@ -23,7 +23,7 @@ hyperframe==6.1.0
 idna==3.10
 joblib==1.4.2
 multidict==6.1.0
-numpy==1.23.5
+numpy==2.2.3
 packaging==24.2
 pandas==2.2.3
 postgrest==0.19.3
